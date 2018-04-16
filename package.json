@@ -1,0 +1,37 @@
+{
+  "name": "pavebot-discord",
+  "version": "1.0.0",
+  "description": "Just a bot, but a pavê one!",
+  "main": "bot.js",
+  "dependencies": {
+    "discord.io": "^2.5.3",
+    "discord.js": "^11.3.2",
+    "winston": "^2.4.1"
+  },
+  "engines": {
+  "node": "8.10.0",
+  "npm": "5.6.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node bot.js"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Fuinha11/pavebot-discord.git"
+  },
+  "keywords": [
+    "bot",
+    "pavê"
+  ],
+  "author": "Fuinha",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Fuinha11/pavebot-discord/issues"
+  },
+  "homepage": "https://github.com/Fuinha11/pavebot-discord#readme"
+}
