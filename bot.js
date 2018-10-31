@@ -8,10 +8,16 @@ logger.add(logger.transports.Console, {
 });
 logger.level = 'debug';
 // Initialize Discord Bot
+
+
+logger.info(process.env.authtoken);
+
 var bot = new Discord.Client({
-    token: auth.token,
+    token: process.env.authtoken,
     autorun: true
 });
+
+
 bot.on('ready', function (evt) {
     logger.info('Connected');
     logger.info('Logged in as: ');
