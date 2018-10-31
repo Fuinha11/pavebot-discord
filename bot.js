@@ -74,6 +74,16 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                     break;
                 case "w":
                     actions.wSearch(bot, user, userID, channelID, message, evt)
+                    break;
+                case "roll":
+                    actions.rollDice(bot, user, userID, channelID, message, evt)
+                    break;
+                case "draw":
+                    actions.drawCard(bot, user, userID, channelID, message, evt)
+                    break;
+                case "env":
+                    actions.chtuluFicha(bot, user, userID, channelID, message, evt)
+                    break;
                 // Just add any case commands if you want to..
             }
         }
