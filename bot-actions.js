@@ -5,6 +5,8 @@ const _ = require('lodash')
 const bola = require('./8ball')
 const perola = require('./perolas')
 const gActions = require('./google-actions')
+const deck = require('./deck')
+const rpg = require('./rpg')
 var logger = require('winston');
 
 logger.remove(logger.transports.Console);
@@ -52,6 +54,26 @@ function spam(bot, user, userID, channelID, message, evt) {
         postRawMessage(bot, channelID, spamMessage)
     }, time)
 
+}
+
+function rollDice(bot, user, userID, channelID, message, evt) {
+    let words = splitRemoveCommand(message)
+    var response = rpg.rollDice(words)
+    postMessage(bot, channelID, response.body, response.title)
+}
+
+function chtuluFicha(bot, user, userID, channelID, message, evt) {
+    let response = rpg.chtuluFicha()
+    postMessage(bot, channelID, response.body, response.title)
+}
+
+function drawCard(bot, user, userID, channelID, message, evt) {
+    let words = splitRemoveCommand(message)
+    let times = parseInt(words[0])
+    if (!times || times > 15)
+        times = 1
+
+    postMessage(bot, channelID, deck.drawMultipleCards(times), "Comprando uma carta 🎴")
 }
 
 function bolaCommand(bot, user, userID, channelID, message, evt) {
@@ -148,7 +170,8 @@ function help(bot, user, userID, channelID, message, evt) {
     let msg = ":8ball: Bola 8" + "```"  + bola.help() + "```" +
     "\n:face_palm::skin-tone-5: Perolas" + "```"  + perola.help() + "```" +
     "\n:mag: Google" + "```"  + gActions.help() + "```" +
-    "\n🤖 PaveBot:" + "```" + botHelp() + "```"
+    "\n🤖 PaveBot:" + "```" + botHelp() + "```" + 
+    "\n:game_die: D20:" + "```" + rpg.diceHelp() + "```"
     
     postRawMessage(bot, channelID, msg)
 }
@@ -160,10 +183,11 @@ function botHelp() {
         "\n!help, esse super mega helper "
 }
 
-function postMessage(bot, channel, msg) {
+function postMessage(bot, channel, body, title) {
+    title = title !== undefined ? title : ""
     bot.sendMessage({
         to: channel,
-        message: "```" + msg + "```"
+        message: title + "```" + body + "```"
     });
 }
 
@@ -200,5 +224,8 @@ module.exports = {
     postRawMessage,
     gSearch,
     ySearch,
-    wSearch
+    wSearch,
+    rollDice,
+    drawCard,
+    chtuluFicha
 }
