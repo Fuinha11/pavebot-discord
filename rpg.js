@@ -4,7 +4,7 @@
 const _ = require('lodash')
 
 function rollDice(words) {
-    let title = ':d20: Rolando '
+    let title = ':game_die: Rolando '
     let body = ""
     let sum = 0
     let dices = []
